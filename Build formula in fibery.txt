@@ -1,0 +1,327 @@
+If(
+    ([Step 1 Periodic Type].[Type of Recurring].Name = "Fixed day (dd/mm)") and ([Step 1 Periodic Type].[Fixed day (day)]="1"),
+     "Recurring on day " + ToText([Step 1 Periodic Type].[Fixed day (day)]) + "st monthly",
+    If(
+    ([Step 1 Periodic Type].[Type of Recurring].Name = "Fixed day (dd/mm)") and ([Step 1 Periodic Type].[Fixed day (day)]="2"),
+     "Recurring on day " + ToText([Step 1 Periodic Type].[Fixed day (day)]) + "nd monthly",
+        If(
+    ([Step 1 Periodic Type].[Type of Recurring].Name = "Fixed day (dd/mm)") and ([Step 1 Periodic Type].[Fixed day (day)]="3"),
+     "Recurring on day " + ToText([Step 1 Periodic Type].[Fixed day (day)]) + "rd monthly",
+         If(
+    ([Step 1 Periodic Type].[Type of Recurring].Name = "Fixed day (dd/mm)") and ([Step 1 Periodic Type].[Fixed day (day)]="1"),
+     "Recurring on day " + ToText([Step 1 Periodic Type].[Fixed day (day)]) + "th monthly",
+
+
+
+
+     If(([Type of Recurring].Name = "Fixed day (dd/mm)") and ([Fixed day (day)]=1),
+     "Recurring on day " + ToText([Fixed day (day)]) + "st monthly",
+        If(([Type of Recurring].Name = "Fixed day (dd/mm)") and ([Fixed day (day)]=2),
+        "Recurring on day " + ToText([Fixed day (day)]) + "nd monthly",
+            If(([Type of Recurring].Name = "Fixed day (dd/mm)") and ([Fixed day (day)]=3),
+            "Recurring on day " + ToText([Fixed day (day)]) + "rd monthly",
+                If(([Type of Recurring].Name = "Fixed day (dd/mm)") and ([Fixed day (day)]>3),
+                "Recurring on day " + ToText([Fixed day (day)]) + "th monthly"
+                    )
+                )
+            )  
+        )
+
+
+
+        If(
+  [Step 1 Periodic Type].[Type of Recurring].Name =
+    "Fixed days (duration)",
+  "Recurring with Duration " +
+    ToText([Step 1 Periodic Type].[Fixed Duration (days)]) +
+    " days",
+  If(
+    [Step 1 Periodic Type].[Type of Recurring].Name =
+      "Fixed day (dd/mm)",
+    "Recurring on day " +
+      ToText([Step 1 Periodic Type].[Fixed day (day)]) +
+      "th monthly",
+    If(
+      [Step 1 Periodic Type].[Type of Recurring].Name =
+        "Fixed day (dd/mm/yyyy)",
+      "Recurring on day " +
+        ToText([Step 1 Periodic Type].[Fixed day (day)]) +
+        "/" +
+        ToText([Step 1 Periodic Type].[Fixed month (month)]) +
+        " yearly",
+      "Non Recurring"
+    )
+  )
+)
+
+
+If(([Step 1 Periodic Type].[Type of Recurring].Name = "Fixed day (dd/mm)") and ([Step 1 Periodic Type].[Fixed day (day)]=1),
+     "Recurring on day " + ToText([Step 1 Periodic Type].[Fixed day (day)]) + "st monthly",
+        If(([Step 1 Periodic Type].[Type of Recurring].Name = "Fixed day (dd/mm)") and ([Step 1 Periodic Type].[Fixed day (day)]=2),
+        "Recurring on day " + ToText([Step 1 Periodic Type].[Fixed day (day)]) + "nd monthly",
+            If(([Step 1 Periodic Type].[Type of Recurring].Name = "Fixed day (dd/mm)") and ([Step 1 Periodic Type].[Fixed day (day)]=3),
+            "Recurring on day " + ToText([Step 1 Periodic Type].[Fixed day (day)]) + "rd monthly",
+                If(([Step 1 Periodic Type].[Type of Recurring].Name = "Fixed day (dd/mm)") and ([Step 1 Periodic Type].[Fixed day (day)]>3),
+                "Recurring on day " + ToText([Step 1 Periodic Type].[Fixed day (day)]) + "th monthly"
+                    )
+                )
+            )  
+        )
+
+
+
+
+ If([Step 1 Periodic Type].[Type of Recurring].Name = "Fixed days (duration)","Recurring with Duration " + ToText([Step 1 Periodic Type].[Fixed Duration (days)]) + " days",
+    If([Step 1 Periodic Type].[Type of Recurring].Name = "Fixed day (dd/mm)", "Recurring on day " + ToText([Step 1 Periodic Type].[Fixed day (day)]) + "th monthly",
+        If([Step 1 Periodic Type].[Type of Recurring].Name = "Fixed day (dd/mm/yyyy)", "Recurring on day " + ToText([Step 1 Periodic Type].[Fixed day (day)]) + "/" + ToText([Step 1 Periodic Type].[Fixed month (month)]) + " yearly",
+        "Non Recurring"
+        )
+    ) 
+)   
+
+If([Step 1 Periodic Type].[Type of Recurring].Name = "Fixed days (duration)","Recurring with Duration " + ToText([Step 1 Periodic Type].[Fixed Duration (days)]) + " days",
+    If(([Step 1 Periodic Type].[Type of Recurring].Name = "Fixed day (dd/mm)") and ([Step 1 Periodic Type].[Fixed day (day)]=1),
+     "Recurring on day " + ToText([Step 1 Periodic Type].[Fixed day (day)]) + "st monthly",
+        If(([Step 1 Periodic Type].[Type of Recurring].Name = "Fixed day (dd/mm)") and ([Step 1 Periodic Type].[Fixed day (day)]=2),
+        "Recurring on day " + ToText([Step 1 Periodic Type].[Fixed day (day)]) + "nd monthly",
+            If(([Step 1 Periodic Type].[Type of Recurring].Name = "Fixed day (dd/mm)") and ([Step 1 Periodic Type].[Fixed day (day)]=3),
+            "Recurring on day " + ToText([Step 1 Periodic Type].[Fixed day (day)]) + "rd monthly",
+                If(([Step 1 Periodic Type].[Type of Recurring].Name = "Fixed day (dd/mm)") and ([Step 1 Periodic Type].[Fixed day (day)]>3),
+                "Recurring on day " + ToText([Step 1 Periodic Type].[Fixed day (day)]) + "th monthly",
+                     If([Step 1 Periodic Type].[Type of Recurring].Name = "Fixed day (dd/mm/yyyy)", "Recurring on day " + ToText([Step 1 Periodic Type].[Fixed day (day)]) + "/" + ToText([Step 1 Periodic Type].[Fixed month (month)]) + " yearly",
+        "Non Recurring")
+                )
+            )   
+        )
+    ) 
+)   
+
+
+
+
+If([Type of Recurring]).Name = "Fixed days (duration)", Dates.Start() + Days([Join (Fixed days and Fixed day)]),
+    If([Type of Recurring].Name = "Fixed day (dd/mm)"), Date(Year(Dates.Start()), Month(Dates.Start()) + 1, [Join (Fixed days and Fixed day)],
+        If([Type of Recurring].Name = "Fixed day (dd/mm/yyyy)"), Date(Year(Dates.Start()) + 1, Month(Dates.Start()), [Join (Fixed days and Fixed day)],""
+        )
+    )
+) 
+
+If([Type of Recurring]).Name = "Fixed days (duration)", Dates.Start() + Days([Join (Fixed days and Fixed day)]),
+    If([Type of Recurring].Name = "Fixed day (dd/mm)", Date(Year(Dates.Start()), Month(Dates.Start()) + 1, [Join (Fixed days and Fixed day)],
+        If([Type of Recurring].Name = "Fixed day (dd/mm/yyyy)"), Date(Year(Dates.Start()) + 1, Month(Dates.Start()), [Join (Fixed days and Fixed day)],"")))))
+
+
+
+// work
+If(
+  [Type of Recurring].Name = "Fixed days (duration)",
+  Dates.Start() + Days([Join (Fixed days and Fixed day)]),
+  If(
+    [Type of Recurring].Name = "Fixed day (dd/mm)",
+    Date(
+      Year(Dates.Start()),
+      Month(Dates.Start()) + 1,
+      [Join (Fixed days and Fixed day)]
+    ),
+    If(
+      [Type of Recurring].Name = "Fixed day (dd/mm/yyyy)",
+      Date(
+        Year(Dates.Start()) + 1,
+        Month(Dates.Start()),
+        [Join (Fixed days and Fixed day)]
+      ),
+      [Creation Date]
+    )
+  )
+)
+
+
+
+If(
+  [(Name contains keyword 'nhận')] = true and [Actual Amount] > 0 and [Planned Amount] > 0,
+  [Actual Amount],
+  If(
+    [(Name contains keyword 'nhận')] = true and [Planned Amount] > 0,
+    [Planned Amount],
+    If(
+      [(Name contains keyword 'nhận')] = false and [Actual Amount] < 0,
+      -1 * [Planned Amount],
+      [Planned Amount]
+    )
+  )
+)
+
+//thử làm của riêng mình
+If([(Name contains keyword 'nhận')] = true
+  [Actual Amount] > 0, + [Actual Amount]
+  [Actual Amount] < 0, + [Planned Amount]
+  If([(Name contains keyword 'nhận')] = false
+    [Actual Amount] > 0, - [Actual Amount]
+    - [Planned Amount]
+// chuyển hóa lại thành formula
+
+If(
+  [(Name contains keyword 'nhận')] = true and [Actual Amount] > 0,
+  [Actual Amount],
+  If(
+    [(Name contains keyword 'nhận')] = true and
+      IsEmpty([Actual Amount]) and
+      [Planned Amount] > 0,
+    [Planned Amount],
+    If(
+      [(Name contains keyword 'nhận')] = false and [Actual Amount] > 0,
+      -1 * [Actual Amount],
+      999
+    )
+  )
+)
+   
+
+// ver 3 done
+If([(Name contains keyword 'nhận')] = true and IsEmpty([Actual Amount]) = false, [Actual Amount],
+  If([(Name contains keyword 'nhận')] = true and IsEmpty([Actual Amount]) and IsEmpty([Planned Amount]) = false , [Planned Amount],
+    If([(Name contains keyword 'nhận')] = false and IsEmpty([Actual Amount]) = false, -1 *[Actual Amount],-1*[Planned Amount]
+    )
+  )
+)
+
+
+// gốc rename cho recurring
+If(
+  [Step 1 Periodic Type].[Type of Recurring].Name =
+    "Fixed days (duration)",
+  "Recurring with Duration " +
+    ToText([Step 1 Periodic Type].[Fixed Duration (days)]) +
+    " days",
+  If(
+    [Step 1 Periodic Type].[Type of Recurring].Name =
+      "Fixed day (dd/mm)" and
+      [Step 1 Periodic Type].[Fixed day (day)] = 1,
+    "Recurring on day " +
+      ToText([Step 1 Periodic Type].[Fixed day (day)]) +
+      "st monthly",
+    If(
+      [Step 1 Periodic Type].[Type of Recurring].Name =
+        "Fixed day (dd/mm)" and
+        [Step 1 Periodic Type].[Fixed day (day)] = 2,
+      "Recurring on day " +
+        ToText([Step 1 Periodic Type].[Fixed day (day)]) +
+        "nd monthly",
+      If(
+        [Step 1 Periodic Type].[Type of Recurring].Name =
+          "Fixed day (dd/mm)" and
+          [Step 1 Periodic Type].[Fixed day (day)] = 3,
+        "Recurring on day " +
+          ToText([Step 1 Periodic Type].[Fixed day (day)]) +
+          "rd monthly",
+        If(
+          [Step 1 Periodic Type].[Type of Recurring].Name =
+            "Fixed day (dd/mm)" and
+            [Step 1 Periodic Type].[Fixed day (day)] > 3,
+          "Recurring on day " +
+            ToText([Step 1 Periodic Type].[Fixed day (day)]) +
+            "th monthly",
+          If(
+            [Step 1 Periodic Type].[Type of Recurring].Name =
+              "Fixed day (dd/mm/yyyy)",
+            "Recurring on day " +
+              ToText([Step 1 Periodic Type].[Fixed day (day)]) +
+              "/" +
+              ToText([Step 1 Periodic Type].[Fixed month (month)]) +
+              " yearly",
+            "Non Recurring"
+          )
+        )
+      )
+    )
+  )
+)
+
+// tinh chỉnh thêm
+If(
+  [Step 1 Periodic Type].[Type of Recurring].Name =
+    "Fixed days (duration)",
+  "Recurring with Duration " +
+    ToText([Step 1 Periodic Type].[Fixed Duration (days)]) +
+    " days",
+  If(
+    [Step 1 Periodic Type].[Type of Recurring].Name =
+      "Fixed day (dd/mm)" and
+      [Step 1 Periodic Type].[Fixed day (day)] = 1,
+    "Recurring on day " +
+      ToText([Step 1 Periodic Type].[Fixed day (day)]) +
+      "st monthly",
+    If(
+      [Step 1 Periodic Type].[Type of Recurring].Name =
+        "Fixed day (dd/mm)" and
+        [Step 1 Periodic Type].[Fixed day (day)] = 2,
+      "Recurring on day " +
+        ToText([Step 1 Periodic Type].[Fixed day (day)]) +
+        "nd monthly",
+      If(
+        [Step 1 Periodic Type].[Type of Recurring].Name =
+          "Fixed day (dd/mm)" and
+          [Step 1 Periodic Type].[Fixed day (day)] = 3,
+        "Recurring on day " +
+          ToText([Step 1 Periodic Type].[Fixed day (day)]) +
+          "rd monthly",
+        If(
+          [Step 1 Periodic Type].[Type of Recurring].Name =
+            "Fixed day (dd/mm)" and
+            [Step 1 Periodic Type].[Fixed day (day)] > 3,
+          "Recurring on day " +
+            ToText([Step 1 Periodic Type].[Fixed day (day)]) +
+            "th monthly",
+          If(
+            [Step 1 Periodic Type].[Type of Recurring].Name =
+              "Fixed day (dd/mm/yyyy)",
+            "Recurring on day " +
+              ToText([Step 1 Periodic Type].[Fixed day (day)]) +
+              "/" +
+              ToText([Step 1 Periodic Type].[Fixed month (month)]) +
+              " yearly",
+            If(
+              [Step 1 Periodic Type].[Type of Recurring].Name =
+                "Fixed day range (dd → dd)/mm",
+              "Recurring day range " +
+                [Step 1 Periodic Type].[(Convert Fixed day (day) to Text)] +
+                " → " +
+                [Step 1 Periodic Type].[(Convert Fixed day range (2) (day) to Text)] +
+                " monthly",
+              "Non Recurring"
+            )
+          )
+        )
+      )
+    )
+  )
+)
+
+
+
+// chuyển 1st, 2nd, 3rd
+If(
+  [Fixed day (day)] = 1 or [Fixed day (day)] = 21,
+  ToText([Fixed day (day)]) + "st",
+  If(
+    [Fixed day (day)] = 2 or [Fixed day (day)] = 22,
+    ToText([Fixed day (day)]) + "nd",
+    If(
+      [Fixed day (day)] = 3 or [Fixed day (day)] = 23,
+       ToText([Fixed day (day)]) + "rd", ToText([Fixed day (day)]) + "th")
+  )
+)
+
+If(
+  [Fixed day range (2) (day)] = 1 or [Fixed day range (2) (day)] = 21,
+  ToText([Fixed day range (2) (day)]) + "st",
+  If(
+    [Fixed day range (2) (day)] = 2 or [Fixed day range (2) (day)] = 22,
+    ToText([Fixed day (day)]) + "nd",
+    If(
+      [Fixed day range (2) (day)] = 3 or [Fixed day range (2) (day)] = 23,
+      ToText([Fixed day range (2) (day)]) + "rd",
+      ToText([Fixed day range (2) (day)]) + "th"
+    )
+  )
+)
